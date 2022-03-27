@@ -8,10 +8,15 @@
           <tr>
             <td><%= link_to user_path(@book.user.id) do %>
               <%= image_tag @book.user.get_profile_image(50,50) %>
+              <p><%= @book.user.name %></p>
             <% end %>
             </td>
             <td><%= link_to @book.title %></td>
             <td><%= @book.body %></td>
+            <% if @book.user == current_user %>
+              <td><%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-sm btn-success" %></td>
+              <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
